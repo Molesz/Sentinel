@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class KontenerFenyMozgas : MonoBehaviour
 {
@@ -46,14 +47,14 @@ public class KontenerFenyMozgas : MonoBehaviour
     [Header("===== FÉNY BEÁLLÍTÁSOK =====")]
 
     [Tooltip("A fény intenzitása.")]
-    [SerializeField] private float fenyIntenzitas = 2500f;
+    [SerializeField] private float fenyIntenzitas = 8000f;
 
     [Tooltip("A fény hatótávolsága.")]
     [SerializeField] private float fenyHatar = 20f;
 
     [Tooltip("A Spot Light külső szöge.")]
     [Range(1f, 179f)]
-    [SerializeField] private float spotSzog = 55f;
+    [SerializeField] private float spotSzog = 45f;
 
     [Tooltip("A fény színe.")]
     [SerializeField] private Color fenySzin = new Color(1f, 0.92f, 0.75f);
@@ -62,7 +63,33 @@ public class KontenerFenyMozgas : MonoBehaviour
     [SerializeField] private bool arnyekok = true;
 
 
-    [Header("===== VOLUMETRIKUS HATÁS =====")]
+    [Header("===== FÉNY IRÁNYA =====")]
+
+    [Tooltip("A fény X tengely körüli dőlése.")]
+    [SerializeField] private float fenyForgatasX = 65f;
+
+    [Tooltip("A fény Y tengely körüli dőlése.")]
+    [SerializeField] private float fenyForgatasY = -15f;
+
+    [Tooltip("A fény Z tengely körüli dőlése.")]
+    [SerializeField] private float fenyForgatasZ = 0f;
+
+
+    [Header("===== HDRP VOLUMETRIKUS FÉNY =====")]
+
+    [Tooltip("A fény hasson-e a volumetrikus ködre.")]
+    [SerializeField] private bool volumetrikusFeny = true;
+
+    [Tooltip("A volumetrikus fénycsóva erőssége.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float volumetrikusDimmer = 1f;
+
+    [Tooltip("A volumetrikus árnyék erőssége.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float volumetrikusArnyekDimmer = 1f;
+
+
+    [Header("===== PULZÁLÁS =====")]
 
     [Tooltip("Finom fényerő pulzálás a természetesebb hatásért.")]
     [SerializeField] private bool pulzalas = true;
@@ -85,11 +112,14 @@ public class KontenerFenyMozgas : MonoBehaviour
     {
         public GameObject objektum;
         public Light feny;
+        public HDAdditionalLightData hdFeny;
         public float sebesseg;
         public float pulzalasEltolas;
     }
 
-    private readonly List<MozgoFeny> fenyek = new List<MozgoFeny>();
+
+    private readonly List<MozgoFeny> fenyek =
+        new List<MozgoFeny>();
 
 
     private void Start()
@@ -103,7 +133,8 @@ public class KontenerFenyMozgas : MonoBehaviour
         if (kontenerMozgas == null)
             return;
 
-        bool mozog = kontenerMozgas.MozgasAktiv();
+        bool mozog =
+            kontenerMozgas.MozgasAktiv();
 
         if (mozog)
         {
@@ -124,15 +155,18 @@ public class KontenerFenyMozgas : MonoBehaviour
     {
         for (int i = 0; i < fenyekSzama; i++)
         {
-            GameObject ujFeny = new GameObject(
-                "Mozgo volumetrikus feny " + (i + 1)
-            );
+            GameObject ujFeny =
+                new GameObject(
+                    "Mozgo volumetrikus feny " + (i + 1)
+                );
 
             ujFeny.transform.SetParent(transform);
+
 
             float kezdoX =
                 jobbOldaliPozicio +
                 (i * fenyekKozottiTavolsag);
+
 
             ujFeny.transform.localPosition =
                 new Vector3(
@@ -141,12 +175,21 @@ public class KontenerFenyMozgas : MonoBehaviour
                     melysegEltolas
                 );
 
-            // Lefelé világítson.
+
             ujFeny.transform.localRotation =
-                Quaternion.Euler(90f, 0f, 0f);
+                Quaternion.Euler(
+                    fenyForgatasX,
+                    fenyForgatasY,
+                    fenyForgatasZ
+                );
 
 
-            Light light = ujFeny.AddComponent<Light>();
+            // =====================================================
+            // UNITY SPOT LIGHT
+            // =====================================================
+
+            Light light =
+                ujFeny.AddComponent<Light>();
 
             light.type = LightType.Spot;
             light.intensity = fenyIntenzitas;
@@ -160,21 +203,54 @@ public class KontenerFenyMozgas : MonoBehaviour
                     : LightShadows.None;
 
 
-            MozgoFeny adat = new MozgoFeny
+            // =====================================================
+            // HDRP VOLUMETRIKUS BEÁLLÍTÁS
+            // =====================================================
+
+            HDAdditionalLightData hdLight =
+                ujFeny.GetComponent<HDAdditionalLightData>();
+
+            if (hdLight == null)
             {
-                objektum = ujFeny,
-                feny = light,
+                hdLight =
+                    ujFeny.AddComponent<HDAdditionalLightData>();
+            }
 
-                sebesseg =
-                    mozgasSebesseg +
-                    Random.Range(
-                        -sebessegElteres,
-                        sebessegElteres
-                    ),
 
-                pulzalasEltolas =
-                    Random.Range(0f, 10f)
-            };
+            hdLight.affectsVolumetric =
+                volumetrikusFeny;
+
+            hdLight.volumetricDimmer =
+                volumetrikusDimmer;
+
+            hdLight.volumetricShadowDimmer =
+                volumetrikusArnyekDimmer;
+
+
+            // =====================================================
+            // FÉNY ADATAINAK ELTÁROLÁSA
+            // =====================================================
+
+            MozgoFeny adat =
+                new MozgoFeny
+                {
+                    objektum = ujFeny,
+
+                    feny = light,
+
+                    hdFeny = hdLight,
+
+                    sebesseg =
+                        mozgasSebesseg +
+                        Random.Range(
+                            -sebessegElteres,
+                            sebessegElteres
+                        ),
+
+                    pulzalasEltolas =
+                        Random.Range(0f, 10f)
+                };
+
 
             fenyek.Add(adat);
         }
@@ -188,17 +264,21 @@ public class KontenerFenyMozgas : MonoBehaviour
             Vector3 pozicio =
                 adat.objektum.transform.localPosition;
 
+
             pozicio.x -=
                 adat.sebesseg *
                 Time.deltaTime;
 
 
-            // Ha elérte a bal oldalt,
-            // visszarakjuk jobbra.
+            // =====================================================
+            // HA ELÉRTE A BAL OLDALT
+            // =====================================================
+
             if (pozicio.x < balOldaliPozicio)
             {
                 float legtavolabbiX =
                     LegtavolabbiJobbOldaliFeny();
+
 
                 pozicio.x =
                     legtavolabbiX +
@@ -210,7 +290,10 @@ public class KontenerFenyMozgas : MonoBehaviour
                 pozicio;
 
 
-            // Finom fényerő változás.
+            // =====================================================
+            // FINOM FÉNYERŐ PULZÁLÁS
+            // =====================================================
+
             if (pulzalas)
             {
                 float szorzo =
@@ -222,6 +305,7 @@ public class KontenerFenyMozgas : MonoBehaviour
                     )
                     *
                     pulzalasErossege;
+
 
                 adat.feny.intensity =
                     fenyIntenzitas *
@@ -238,18 +322,22 @@ public class KontenerFenyMozgas : MonoBehaviour
 
     private float LegtavolabbiJobbOldaliFeny()
     {
-        float maximum = jobbOldaliPozicio;
+        float maximum =
+            jobbOldaliPozicio;
+
 
         foreach (MozgoFeny adat in fenyek)
         {
             float x =
                 adat.objektum.transform.localPosition.x;
 
+
             if (x > maximum)
             {
                 maximum = x;
             }
         }
+
 
         return maximum;
     }

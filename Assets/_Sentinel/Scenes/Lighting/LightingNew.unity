@@ -538,7 +538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &403006291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,6 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 955534720}
   - component: {fileID: 955534719}
+  - component: {fileID: 955534721}
   m_Layer: 0
   m_Name: Background_containers_0
   m_TagString: Untagged
@@ -964,6 +965,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &955534721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955534718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc333c20d89ad2c49a88d4e4c6f7ac28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HatterMozgas
+  kontenerMozgas: {fileID: 1709661702}
+  mozgasSebesseg: 0.03
 --- !u!1 &1309008344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1218,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1709661700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3613ef03afb273b4b9f701b41fbe4211, type: 3}
+  m_PrefabInstance: {fileID: 2088292054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1709661702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709661700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920b4ae1e107fdd448b8669326509621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KontenerMozgas
+  szallitasIdotartama: 60
+  automatikusInditas: 1
+  razkodasErossege: 0.015
+  razkodasSebessege: 7
+  oldalMozgas: 0.01
+  fuggolegesMozgas: 0.008
+  eloreHatramozgas: 0.005
+  oldalBilleges: 0.8
+  eloreHattraBilleges: 0.5
+  billegesSebessege: 0.7
+  vegsoRazkodasIdotartama: 1.5
+  vegsoRazkodasErossege: 0.08
+  vegsoForgasErossege: 4
+  vegsoRazkodasSebessege: 18
+  visszaallEredetiHelyzetbe: 1
 --- !u!1 &1957791920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1482,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 8.047, y: 0, z: 0}
+--- !u!1 &2010428292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2010428293}
+  - component: {fileID: 2010428294}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2010428293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010428292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.274, y: 1.156, z: -0.278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010428294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010428292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12962c2711d807044891a95a147dd9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KontenerFenyMozgas
+  kontenerMozgas: {fileID: 1709661702}
+  fenyekSzama: 4
+  fenyekKozottiTavolsag: 8
+  jobbOldaliPozicio: 15
+  balOldaliPozicio: -15
+  fenyMagassag: 6
+  melysegEltolas: 0
+  mozgasSebesseg: 6
+  sebessegElteres: 0.5
+  fenyIntenzitas: 6000
+  fenyHatar: 50
+  spotSzog: 68.4
+  fenySzin: {r: 1, g: 0.92, b: 0.75, a: 1}
+  arnyekok: 1
+  fenyForgatasX: 65
+  fenyForgatasY: -15
+  fenyForgatasZ: 0
+  volumetrikusFeny: 1
+  volumetrikusDimmer: 0.896
+  volumetrikusArnyekDimmer: 0.968
+  pulzalas: 1
+  pulzalasErossege: 0.292
+  pulzalasSebessege: 2
+  azonnaliKikapcsolas: 1
 --- !u!1001 &2088292054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1494,7 +1609,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3613ef03afb273b4b9f701b41fbe4211, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1709661702}
   m_SourcePrefab: {fileID: 100100000, guid: 3613ef03afb273b4b9f701b41fbe4211, type: 3}
 --- !u!1 &2117757567
 GameObject:
@@ -1749,3 +1867,4 @@ SceneRoots:
   - {fileID: 140134592}
   - {fileID: 648091233}
   - {fileID: 955534720}
+  - {fileID: 2010428293}
