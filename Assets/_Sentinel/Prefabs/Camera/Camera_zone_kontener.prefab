@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9122745376747421286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4951986095115696081}
+  - component: {fileID: 5638469269886579842}
+  m_Layer: 0
+  m_Name: Camera_zone_kontener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4951986095115696081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122745376747421286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.29225, y: 0.53821, z: 0.05818}
+  m_LocalScale: {x: 1.8615061, y: 0.56976, z: 0.73477}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5638469269886579842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122745376747421286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f883e7cea33db4baff2fbd3cff14d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SentinelCameraZone
+  kozeppont: {x: 0, y: 0, z: 0}
+  meret: {x: 5, y: 5, z: 5}
+  prioritas: 0
+  beallitasok:
+    tavolsag: 6
+    latoszog: 35
+    celpontEltolas: {x: 0, y: 0.3, z: 0}
+    "vizszintesSim\xEDt\xE1s": 0.35
+    "fuggolegesSim\xEDt\xE1s": 0.8
+    "melysegiSim\xEDt\xE1s": 0.5
+    vizszintesHoltzona: 0.2
+    fuggolegesHoltzona: 0.35
+    eloretekintes: 0.65
+    teljesEloretekintesSebessege: 2.5
