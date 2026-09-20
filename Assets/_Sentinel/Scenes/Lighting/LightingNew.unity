@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
   m_IsGlobal: 1
   priority: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
   m_IsGlobal: 1
   priority: 5
@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc333c20d89ad2c49a88d4e4c6f7ac28, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HatterMozgas
   kontenerMozgas: {fileID: 1709661702}
   mozgasSebesseg: 0.03
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDAdditionalLightData
   m_PointlightHDType: 0
   m_SpotLightShape: 0
@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0ef8dc2c2eabfa4e8cb77be57a837c0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDAdditionalReflectionData
   m_HDProbeVersion: 9
   m_ObsoleteInfiniteProjection: 1
@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2fffdfdc650a7e4998ec04279f8fcc4, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SentinelContainerRain
   openingCenter: {x: -6.25, y: 1.45, z: -0.1}
   openingSize: {x: 0.9, y: 0.6}
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 920b4ae1e107fdd448b8669326509621, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KontenerMozgas
 --- !u!1 &1716657771
 GameObject:
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1fbb15bf92b84f40a1eb030765b5afe, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.LocalVolumetricFog
   m_Version: 3
   parameters:
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12962c2711d807044891a95a147dd9c5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KontenerFenyMozgas
   kontenerMozgas: {fileID: 1709661702}
   fenyekSzama: 4
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48e7896ec9b424f4d81869543fdf04c3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SentinelContainerPlayer
   movementReference: {fileID: 58692722}
   visual: {fileID: 140134592}
@@ -2287,8 +2287,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: karakter
-      value:
+      value: 
       objectReference: {fileID: 2095067337}
+    - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
+      propertyPath: alap.latoszog
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: alap.tavolsag
       value: 4
@@ -2307,7 +2311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: hatarReferencia
-      value:
+      value: 
       objectReference: {fileID: 58692722}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: melysegiHatar.x
@@ -2335,19 +2339,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: mozgasiReferencia
-      value:
+      value: 
       objectReference: {fileID: 58692722}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: vizszintesHatar.x
-      value: -7.3
+      value: -8.3
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: vizszintesHatar.y
-      value: 2.34
+      value: 3.34
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: alap.eloretekintes
-      value: 0.25
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: teljesKepHatarolasa
@@ -2355,7 +2359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: 'zonak.Array.data[0]'
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: alap.celpontEltolas.y
