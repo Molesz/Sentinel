@@ -2382,6 +2382,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 901964469129937445, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662199989266188000, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6910067
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662199989266188000, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6946973
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662199989266188000, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.15003233
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662199989266188000, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.13189249
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662199989266188000, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662199989266188000, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 91.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042592315176103367, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2433230301330178500, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.51
@@ -2389,6 +2421,38 @@ PrefabInstance:
     - target: {fileID: 3519602335307059191, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
       propertyPath: m_Name
       value: ContainerLighting
+      objectReference: {fileID: 0}
+    - target: {fileID: 3671042237184457640, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_Color.b
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_Color.g
+      value: 0.72934836
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_Color.r
+      value: 0.630785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_Intensity
+      value: 737.44446
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_SpotAngle
+      value: 58.964485
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 58.964485
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5076957788778184680, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2428,6 +2492,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5076957788778184680, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550674365273804650, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
