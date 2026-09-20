@@ -3,53 +3,53 @@ using UnityEngine;
 [System.Serializable]
 public class SentinelKameraBeallitasok
 {
-    [Header("KÈpkiv·g·s")]
+    [Header("K√©pkiv√°g√°s")]
 
-    [InspectorName("T·vols·g")]
+    [InspectorName("T√°vols√°g")]
     [Min(0.1f)]
     public float tavolsag = 6f;
 
-    [InspectorName("L·tÛszˆg")]
+    [InspectorName("L√°t√≥sz√∂g")]
     [Range(15f, 80f)]
     public float latoszog = 35f;
 
-    [InspectorName("CÈlpont eltol·sa")]
-    [Tooltip("Vil·gkoordin·t·ban Èrtendı. Y: a kÈp kˆzÈppontj·nak magass·ga.")]
+    [InspectorName("C√©lpont eltol√°sa")]
+    [Tooltip("Vil√°gkoordin√°t√°ban √©rtend≈ë. Y: a k√©p k√∂z√©ppontj√°nak magass√°ga.")]
     public Vector3 celpontEltolas = new Vector3(0f, 0.3f, 0f);
 
-    [Header("KˆvetÈs")]
+    [Header("K√∂vet√©s")]
 
-    [InspectorName("VÌzszintes simÌt·s")]
-    [Tooltip("M·sodperc. Nagyobb ÈrtÈk: lassabb, l·gyabb kˆvetÈs.")]
+    [InspectorName("V√≠zszintes sim√≠t√°s")]
+    [Tooltip("M√°sodperc. Nagyobb √©rt√©k: lassabb, l√°gyabb k√∂vet√©s.")]
     [Min(0.01f)]
-    public float vizszintesSimÌt·s = 0.35f;
+    public float vizszintesSim√≠t√°s = 0.35f;
 
-    [InspectorName("F¸ggıleges simÌt·s")]
+    [InspectorName("F√ºgg≈ëleges sim√≠t√°s")]
     [Min(0.01f)]
-    public float fuggolegesSimÌt·s = 0.8f;
+    public float fuggolegesSim√≠t√°s = 0.8f;
 
-    [InspectorName("MÈlysÈgi simÌt·s")]
+    [InspectorName("M√©lys√©gi sim√≠t√°s")]
     [Min(0.01f)]
-    public float melysegiSimÌt·s = 0.5f;
+    public float melysegiSim√≠t√°s = 0.5f;
 
-    [InspectorName("VÌzszintes holtzÛna")]
-    [Tooltip("A karakter ennyit mozdulhat oldalra kamerakˆvetÈs nÈlk¸l.")]
+    [InspectorName("V√≠zszintes holtz√≥na")]
+    [Tooltip("A karakter ennyit mozdulhat oldalra kamerak√∂vet√©s n√©lk√ºl.")]
     [Min(0f)]
     public float vizszintesHoltzona = 0.2f;
 
-    [InspectorName("F¸ggıleges holtzÛna")]
-    [Tooltip("Az aprÛ f¸ggıleges mozg·sokat Ès kisebb ugr·sokat tompÌtja.")]
+    [InspectorName("F√ºgg≈ëleges holtz√≥na")]
+    [Tooltip("Az apr√≥ f√ºgg≈ëleges mozg√°sokat √©s kisebb ugr√°sokat tomp√≠tja.")]
     [Min(0f)]
     public float fuggolegesHoltzona = 0.35f;
 
-    [Header("ElıretekintÈs")]
+    [Header("El≈ëretekint√©s")]
 
-    [InspectorName("ElıretekintÈs t·vols·ga")]
+    [InspectorName("El≈ëretekint√©s t√°vols√°ga")]
     [Min(0f)]
     public float eloretekintes = 0.65f;
 
-    [InspectorName("Teljes elıretekintÈs sebessÈge")]
-    [Tooltip("Ekkora karaktersebessÈgnÈl Èri el a teljes elıretekintÈst.")]
+    [InspectorName("Teljes el≈ëretekint√©s sebess√©ge")]
+    [Tooltip("Ekkora karaktersebess√©gn√©l √©ri el a teljes el≈ëretekint√©st.")]
     [Min(0.01f)]
     public float teljesEloretekintesSebessege = 2.5f;
 }
@@ -60,72 +60,78 @@ public class SentinelFollowCamera : MonoBehaviour
 {
     [Header("Karakter")]
 
-    [InspectorName("Kˆvetett karakter")]
+    [InspectorName("K√∂vetett karakter")]
     public Transform karakter;
 
-    [InspectorName("Mozg·si referencia")]
+    [InspectorName("Mozg√°si referencia")]
     [Tooltip(
-        "Opcion·lis: a tÈnylegesen mozgÛ kontÈner vagy platform. " +
-        "Õgy annak mozg·sa nem sz·mÌt a karakter saj·t elıretekintÈsÈbe."
+        "Opcion√°lis: a t√©nylegesen mozg√≥ kont√©ner vagy platform. " +
+        "√çgy annak mozg√°sa nem sz√°m√≠t a karakter saj√°t el≈ëretekint√©s√©be."
     )]
     public Transform mozgasiReferencia;
 
-    [Header("Alapbe·llÌt·sok")]
+    [Header("Alapbe√°ll√≠t√°sok")]
 
-    [InspectorName("Alap kamerabe·llÌt·sok")]
+    [InspectorName("Alap kamerabe√°ll√≠t√°sok")]
     public SentinelKameraBeallitasok alap =
         new SentinelKameraBeallitasok();
 
-    [InspectorName("Kamera szˆge")]
+    [InspectorName("Kamera sz√∂ge")]
     [Tooltip(
-        "(0,0,0): negatÌv Z felıl nÈz +Z felÈ. " +
-        "(5,0,0): enyhÈn fel¸lrıl nÈz."
+        "(0,0,0): negat√≠v Z fel≈ël n√©z +Z fel√©. " +
+        "(5,0,0): enyh√©n fel√ºlr≈ël n√©z."
     )]
     public Vector3 kameraSzoge = new Vector3(5f, 0f, 0f);
 
-    [Header("Filmes ·tmenetek")]
+    [Header("Filmes √°tmenetek")]
 
-    [InspectorName("ZÛnav·lt·s simÌt·sa")]
+    [InspectorName("Z√≥nav√°lt√°s sim√≠t√°sa")]
     [Min(0.01f)]
-    public float zonavaltasSimÌt·sa = 1.2f;
+    public float zonavaltasSim√≠t√°sa = 1.2f;
 
-    [InspectorName("ElıretekintÈs simÌt·sa")]
+    [InspectorName("El≈ëretekint√©s sim√≠t√°sa")]
     [Min(0.01f)]
-    public float eloretekintesSimÌt·sa = 0.65f;
+    public float eloretekintesSim√≠t√°sa = 0.65f;
 
-    [InspectorName("SebessÈgmÈrÈs simÌt·sa")]
+    [InspectorName("Sebess√©gm√©r√©s sim√≠t√°sa")]
     [Min(0.01f)]
-    public float sebessegSimÌt·sa = 0.15f;
+    public float sebessegSim√≠t√°sa = 0.15f;
 
-    [InspectorName("Meg·ll·s ÈrzÈkelÈsi k¸szˆbe")]
+    [InspectorName("Meg√°ll√°s √©rz√©kel√©si k√ºsz√∂be")]
     [Min(0f)]
     public float megallasKuszob = 0.08f;
 
-    [InspectorName("ElıretekintÈs megtart·sa meg·ll·skor")]
+    [InspectorName("El≈ëretekint√©s megtart√°sa meg√°ll√°skor")]
     public bool eloretekintesMegtartasa = true;
 
-    [Header("KamerazÛn·k")]
+    [Header("Kameraz√≥n√°k")]
 
-    [InspectorName("ZÛn·k")]
+    [InspectorName("Z√≥n√°k")]
     public SentinelCameraZone[] zonak;
 
-    [Header("KˆvetÈsi kˆzÈppont hat·rai")]
+    [Header("K√∂vet√©si k√∂z√©ppont hat√°rai")]
 
-    [InspectorName("Hat·rok haszn·lata")]
+    [InspectorName("Hat√°rok haszn√°lata")]
     public bool hatarokHasznalata;
 
-    [InspectorName("Hat·rok referenci·ja")]
+    [InspectorName("Hat√°rok referenci√°ja")]
     [Tooltip(
-        "‹resen vil·gkoordin·t·k. MozgÛ kontÈner esetÈn add meg " +
-        "a kontÈnert, Ès a hat·rok annak helyi koordin·t·iban Èrtendık."
+        "√úresen vil√°gkoordin√°t√°k. Mozg√≥ kont√©ner eset√©n add meg " +
+        "a kont√©nert, √©s a hat√°rok annak helyi koordin√°t√°iban √©rtend≈ëk."
     )]
     public Transform hatarReferencia;
 
-    [InspectorName("Bal Ès jobb hat·r")]
+    [InspectorName("Bal √©s jobb hat√°r")]
     public Vector2 vizszintesHatar = new Vector2(-10f, 10f);
 
-    [InspectorName("AlsÛ Ès felsı hat·r")]
+    [InspectorName("Als√≥ √©s fels≈ë hat√°r")]
     public Vector2 fuggolegesHatar = new Vector2(-5f, 5f);
+
+    [Header("Teljes kont√©ner-k√©pkiv√°g√°s")]
+    [Tooltip("A k√©pkiv√°g√°s a nyitott oldal keret√©n bel√ºl marad. A referencia +Z tengelye fel√© n√©z.")]
+    public bool teljesKepHatarolasa;
+    public Vector2 melysegiHatar = new Vector2(-1f, 1f);
+    [Min(0f)] public float kepBiztonsagiSzegely = 0.04f;
 
     private Camera kamera;
 
@@ -167,7 +173,7 @@ public class SentinelFollowCamera : MonoBehaviour
         inicializalt = false;
     }
 
-    // Teleport·l·s vagy ˙jraÈledÈs ut·n is meghÌvhatÛ.
+    // Teleport√°l√°s vagy √∫jra√©led√©s ut√°n is megh√≠vhat√≥.
     [ContextMenu("Kamera azonnal a karakterhez")]
     public void AzonnaliIgazitas()
     {
@@ -257,9 +263,9 @@ public class SentinelFollowCamera : MonoBehaviour
         tavolsag = Mathf.Max(0.1f, b.tavolsag);
         latoszog = Mathf.Clamp(b.latoszog, 15f, 80f);
 
-        vizSim = b.vizszintesSimÌt·s;
-        fuggSim = b.fuggolegesSimÌt·s;
-        melySim = b.melysegiSimÌt·s;
+        vizSim = b.vizszintesSim√≠t√°s;
+        fuggSim = b.fuggolegesSim√≠t√°s;
+        melySim = b.melysegiSim√≠t√°s;
         vizHolt = b.vizszintesHoltzona;
         fuggHolt = b.fuggolegesHoltzona;
 
@@ -304,7 +310,7 @@ public class SentinelFollowCamera : MonoBehaviour
             KovetesFrissitese(b, dt);
         }
 
-        // Sz¸net alatt se keletkezzen hamis mozg·ssebessÈg.
+        // Sz√ºnet alatt se keletkezzen hamis mozg√°ssebess√©g.
         elozoHelyiPozicio = MozgasiPozicio();
 
         Quaternion forgatas = Quaternion.Euler(kameraSzoge);
@@ -328,20 +334,56 @@ public class SentinelFollowCamera : MonoBehaviour
         kamera.orthographic = false;
         kamera.usePhysicalProperties = false;
         kamera.fieldOfView = latoszog;
+        if (hatarokHasznalata && teljesKepHatarolasa)
+            KontenerKepHatarolasa();
+    }
+
+    // Clamp after smoothing. Side edges fit even at the back wall; vertical
+    // edges fit the front opening. The solid floor/roof occlude deeper rays,
+    // allowing the floor and puddles to remain visible below the character.
+    public void KontenerKepHatarolasa()
+    {
+        if (kamera == null) kamera = GetComponent<Camera>();
+        Vector3 p = hatarReferencia != null
+            ? hatarReferencia.InverseTransformPoint(transform.position) : transform.position;
+        float left = Mathf.Min(vizszintesHatar.x, vizszintesHatar.y) + kepBiztonsagiSzegely;
+        float right = Mathf.Max(vizszintesHatar.x, vizszintesHatar.y) - kepBiztonsagiSzegely;
+        float bottom = Mathf.Min(fuggolegesHatar.x, fuggolegesHatar.y) + kepBiztonsagiSzegely;
+        float top = Mathf.Max(fuggolegesHatar.x, fuggolegesHatar.y) - kepBiztonsagiSzegely;
+        float front = Mathf.Min(melysegiHatar.x, melysegiHatar.y);
+        float back = Mathf.Max(melysegiHatar.x, melysegiHatar.y);
+        Vector3 scale = hatarReferencia != null ? hatarReferencia.lossyScale : Vector3.one;
+        float aspect = Mathf.Max(0.01f, kamera.aspect);
+        float maxHalfHeight = Mathf.Max(0.01f, (top - bottom) * Mathf.Abs(scale.y) * 0.5f);
+        float maxHalfWidth = Mathf.Max(0.01f, (right - left) * Mathf.Abs(scale.x) * 0.5f);
+        float depth = (back - front) * Mathf.Abs(scale.z);
+        float clearance = kamera.nearClipPlane + 0.02f;
+        float tan = Mathf.Min(Mathf.Tan(kamera.fieldOfView * Mathf.Deg2Rad * 0.5f),
+            Mathf.Min(maxHalfHeight / clearance, maxHalfWidth / ((depth + clearance) * aspect)));
+        kamera.fieldOfView = 2f * Mathf.Atan(tan) * Mathf.Rad2Deg;
+        float maxDistance = Mathf.Min(maxHalfHeight / tan + depth, maxHalfWidth / (tan * aspect));
+        p.z = Mathf.Clamp(p.z, back - maxDistance / Mathf.Abs(scale.z),
+            front - (kamera.nearClipPlane + 0.02f) / Mathf.Abs(scale.z));
+        float halfX = (back - p.z) * Mathf.Abs(scale.z) * tan * aspect / Mathf.Abs(scale.x);
+        float halfY = (front - p.z) * Mathf.Abs(scale.z) * tan / Mathf.Abs(scale.y);
+        p.x = Mathf.Clamp(p.x, left + halfX, Mathf.Max(left + halfX, right - halfX));
+        p.y = Mathf.Clamp(p.y, bottom + halfY, Mathf.Max(bottom + halfY, top - halfY));
+        transform.SetPositionAndRotation(hatarReferencia != null ? hatarReferencia.TransformPoint(p) : p,
+            hatarReferencia != null ? hatarReferencia.rotation : Quaternion.identity);
     }
 
     private void KovetesFrissitese(
         SentinelKameraBeallitasok b,
         float dt)
     {
-        float atmenet = Mathf.Max(0.01f, zonavaltasSimÌt·sa);
+        float atmenet = Mathf.Max(0.01f, zonavaltasSim√≠t√°sa);
 
-        // KÈpkockasebessÈgtıl f¸ggetlen ·tmenet.
+        // K√©pkockasebess√©gt≈ël f√ºggetlen √°tmenet.
         float s = 1f - Mathf.Exp(-dt / atmenet);
 
-        vizSim = Mathf.Lerp(vizSim, b.vizszintesSimÌt·s, s);
-        fuggSim = Mathf.Lerp(fuggSim, b.fuggolegesSimÌt·s, s);
-        melySim = Mathf.Lerp(melySim, b.melysegiSimÌt·s, s);
+        vizSim = Mathf.Lerp(vizSim, b.vizszintesSim√≠t√°s, s);
+        fuggSim = Mathf.Lerp(fuggSim, b.fuggolegesSim√≠t√°s, s);
+        melySim = Mathf.Lerp(melySim, b.melysegiSim√≠t√°s, s);
         vizHolt = Mathf.Lerp(vizHolt, b.vizszintesHoltzona, s);
         fuggHolt = Mathf.Lerp(fuggHolt, b.fuggolegesHoltzona, s);
 
@@ -360,7 +402,7 @@ public class SentinelFollowCamera : MonoBehaviour
             mertSebesseg,
             nyersSebesseg,
             ref mertSebessegValtozas,
-            Mathf.Max(0.01f, sebessegSimÌt·sa),
+            Mathf.Max(0.01f, sebessegSim√≠t√°sa),
             Mathf.Infinity,
             dt
         );
@@ -381,7 +423,7 @@ public class SentinelFollowCamera : MonoBehaviour
             eloreCel = 0f;
         }
 
-        // ⁄j zÛn·ban a kisebb elıretekintÈsi hat·rt is betartja.
+        // √öj z√≥n√°ban a kisebb el≈ëretekint√©si hat√°rt is betartja.
         eloreCel = Mathf.Clamp(
             eloreCel,
             -b.eloretekintes,
@@ -392,7 +434,7 @@ public class SentinelFollowCamera : MonoBehaviour
             eloreAktualis,
             eloreCel,
             ref eloreSebesseg,
-            Mathf.Max(0.01f, eloretekintesSimÌt·sa),
+            Mathf.Max(0.01f, eloretekintesSim√≠t√°sa),
             Mathf.Infinity,
             dt
         );
