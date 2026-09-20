@@ -725,12 +725,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648091229}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.04, y: -0.955, z: 0}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -1.04, y: -0.955, z: 0}
   m_LocalScale: {x: 0.54922, y: 0.54922, z: 0.54922}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5614675451927557514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955534718
 GameObject:
@@ -3307,6 +3307,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5470809884864340263, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7072302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470809884864340263, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7069834
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470809884864340263, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470809884864340263, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470809884864340263, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470809884864340263, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3325,6 +3349,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2961424721768359841, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 986655978}
+    - targetCorrespondingSourceObject: {fileID: 2961424721768359841, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 648091233}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7848884910354467849, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
       insertIndex: -1
@@ -3338,6 +3365,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7018627143286269451, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5614675451927557523}
+    - targetCorrespondingSourceObject: {fileID: 7018627143286269451, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5614675451927557533}
     - targetCorrespondingSourceObject: {fileID: 5249465232376420339, guid: 6995d673b739e5e438e817e732b3e0be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5614675451927557522}
@@ -3506,6 +3536,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7243169564009681619, guid: 3613ef03afb273b4b9f701b41fbe4211, type: 3}
+--- !u!114 &5614675451927557533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5614675451927557518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ba1793f1533742b60c2bbdf783066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KontenerAjtoMozgas
+  kontenerAlap: {fileID: 5614675451927557514}
+  minimumSzog: -10
+  maximumSzog: 10
+  lengesSebesseg: 1.5
+  mozgasKuszob: 0.00001
+  forgatasKuszob: 0.0001
 --- !u!1001 &6294056574383205342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3628,7 +3676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: vizszintesHatar.y
-      value: 3.34
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 8616741575184484706, guid: 15f020f2502a9ef439454695e041515b, type: 3}
       propertyPath: alap.eloretekintes
@@ -3792,7 +3840,6 @@ SceneRoots:
   - {fileID: 1309008347}
   - {fileID: 5614675451927557512}
   - {fileID: 298031897}
-  - {fileID: 648091233}
   - {fileID: 2010428293}
   - {fileID: 7989770207325332217}
   - {fileID: 955534720}
