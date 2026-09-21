@@ -14,6 +14,16 @@ public sealed class SentinelContainerRain : MonoBehaviour
     public float streakWidth = 0.004f;
     public Material rainMaterial;
     public int ImpactCount { get; private set; }
+    SentinelContainerWater water;
+    float seepEmission;
+    int nextSeep;
+    static readonly float[] seepPositions = { -5.3f, -3.1f, -0.8f, 1.2f };
+
+    void Start()
+    {
+        water = GetComponent<SentinelContainerWater>();
+        if (water == null) water = gameObject.AddComponent<SentinelContainerWater>();
+    }
 
     struct Drop { public Vector3 position, impact, normal; public float speed; public bool active; }
     struct Splash { public Vector3 position, normal; public float age; public bool active; }
@@ -43,6 +53,7 @@ public sealed class SentinelContainerRain : MonoBehaviour
         float dt = Time.deltaTime;
         if (dt <= 0) return;
         emission = Mathf.Min(emission + dropsPerSecond * dt, 20);
+        seepEmission = Mathf.Min(seepEmission + dt * 2.2f, 2);
         for (int i = 0; i < drops.Length && emission >= 1; i++)
         {
             if (drops[i].active) continue;
@@ -56,6 +67,19 @@ public sealed class SentinelContainerRain : MonoBehaviour
             drops[i] = new Drop { active = true, position = start, impact = point,
                 normal = transform.InverseTransformDirection(hit.normal), speed = fallSpeed * Random.Range(0.85f, 1.15f) };
         }
+        // Small leaks under the ceiling, including above cargo outside the opening.
+        for (int i = 0; i < drops.Length && seepEmission >= 1; i++)
+        {
+            if (drops[i].active) continue;
+            seepEmission--;
+            int source = nextSeep++ % seepPositions.Length;
+            Vector3 start = new Vector3(seepPositions[source] + Random.Range(-0.015f, 0.015f), 0.94f, source % 2 == 0 ? 0.3f : -0.3f);
+            if (!FindEnvironmentSurface(start, out var hit)) continue;
+            Vector3 point = transform.InverseTransformPoint(hit.point);
+            if (point.y >= start.y - 0.1f) continue;
+            drops[i] = new Drop { active = true, position = start, impact = point,
+                normal = transform.InverseTransformDirection(hit.normal), speed = 0.2f };
+        }
         vertices.Clear();
         uv.Clear();
         indices.Clear();
@@ -64,6 +88,7 @@ public sealed class SentinelContainerRain : MonoBehaviour
             if (!drops[i].active) continue;
             var d = drops[i];
             Vector3 previous = d.position;
+            d.speed = Mathf.Min(d.speed + 9.81f * dt, fallSpeed * 1.15f);
             d.position.y -= d.speed * dt;
             // Re-test the travelled segment so a moving character can catch a drop.
             Vector3 a = transform.TransformPoint(previous);
@@ -80,6 +105,7 @@ public sealed class SentinelContainerRain : MonoBehaviour
                 splashes[nextSplash] = new Splash { active = true, position = d.impact + d.normal * 0.009f, normal = d.normal };
                 nextSplash = (nextSplash + 1) % splashes.Length;
                 ImpactCount++;
+                if (water != null) water.Impact(d.impact, d.normal);
             }
             else Quad(d.position, d.position + Vector3.up * Mathf.Min(streakLength, openingCenter.y - d.position.y), Vector3.right * streakWidth * 0.5f);
             drops[i] = d;
@@ -91,20 +117,11 @@ public sealed class SentinelContainerRain : MonoBehaviour
             splash.age += dt;
             if (splash.age > 0.42f) { splash.active = false; splashes[i] = splash; continue; }
             float progress = splash.age / 0.42f;
-            float radius = Mathf.Lerp(0.008f, 0.10f, progress);
-            float thickness = 0.005f * (1 - progress);
             Vector3 tangent = Vector3.Cross(splash.normal, Vector3.forward).normalized;
             if (tangent.sqrMagnitude < 0.1f) tangent = Vector3.right;
             Vector3 bitangent = Vector3.Cross(splash.normal, tangent);
-            for (int segment = 0; segment < 12; segment++)
-            {
-                float angle = segment * Mathf.PI / 6;
-                float next = (segment + 1) * Mathf.PI / 6;
-                Vector3 u = tangent * Mathf.Cos(angle) + bitangent * Mathf.Sin(angle);
-                Vector3 v = tangent * Mathf.Cos(next) + bitangent * Mathf.Sin(next);
-                Face(splash.position + u * radius, splash.position + v * radius,
-                    splash.position + v * (radius + thickness), splash.position + u * (radius + thickness));
-            }
+            // The water surface supplies refractive-looking normal ripples.
+            // On solid cargo only ballistic spray remains, not luminous rings.
             if (splash.age < 0.2f)
                 for (int spray = 0; spray < 3; spray++)
                 {
@@ -126,8 +143,17 @@ public sealed class SentinelContainerRain : MonoBehaviour
     {
         closest = default;
         float distance = float.PositiveInfinity;
-        int count = Physics.RaycastNonAlloc(transform.TransformPoint(start), -transform.up, surfaceHits, 5,
-            ~0, QueryTriggerInteraction.Ignore);
+        // Imported double-sided render meshes can have inward-facing collision
+        // triangles. Hit the visible top, not the lower shell behind it.
+        bool backfaces = Physics.queriesHitBackfaces;
+        int count;
+        try
+        {
+            Physics.queriesHitBackfaces = true;
+            count = Physics.RaycastNonAlloc(transform.TransformPoint(start), -transform.up, surfaceHits, 5,
+                ~0, QueryTriggerInteraction.Ignore);
+        }
+        finally { Physics.queriesHitBackfaces = backfaces; }
         for (int i = 0; i < count; i++)
         {
             var hit = surfaceHits[i];
@@ -135,6 +161,7 @@ public sealed class SentinelContainerRain : MonoBehaviour
             // future impact point: otherwise walking away leaves air splashes.
             if (hit.collider.GetComponentInParent<SentinelContainerPlayer>() != null || hit.distance >= distance) continue;
             closest = hit;
+            if (Vector3.Dot(closest.normal, transform.up) < 0) closest.normal = -closest.normal;
             distance = hit.distance;
         }
         return !float.IsPositiveInfinity(distance);

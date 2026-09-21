@@ -920,8 +920,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 1
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
@@ -5262,6 +5262,10 @@ PrefabInstance:
     - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
       propertyPath: m_SpotAngle
       value: 58.964485
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
+      propertyPath: m_ShapeRadius
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4811157444830380351, guid: 20b28d54dcdceb844b61525eb233e078, type: 3}
       propertyPath: m_InnerSpotAngle

@@ -46,7 +46,7 @@ gyűrűk közös, újrahasznosított meshbe kerülnek, korlátozott elemszámmal
 
 A tetőrés alatti padló külön, a padló geometriáját követő nedves felületet
 kapott. A HDRP Lit anyag magas smoothness értéke, a helyi reflection probe
-és az SSR adja a visszafogott tükröződést. A reflection probe induláskor
+és az SSR adja a visszafogott tükröződést. A korábbi reflection probe induláskor
 frissül; az SSR a képen látható mozgásokat követi.
 
 ## Ellenőrzés
@@ -63,3 +63,33 @@ frissül; az SSR a képen látható mozgásokat követi.
 
 A régi `lvl1_container` jelenet nem az aktív pálya; ez a változtatás a
 buildbe már bekapcsolt `LightingNew` jelenetet készíti elő.
+
+## Dinamikus beázás
+
+A `SentinelContainerRain` Play módban automatikusan létrehozza a
+`SentinelContainerWater` komponenst. A jelenetet nem kell újrakonfigurálni.
+A régi nedves mesh helyett a valódi padlóra illesztett, sűrű vízfelületek
+jelennek meg, és a fő tócsa a beleérkező cseppektől lassan növekszik.
+A `fillSeconds` a telítődés ütemét szabályozza (alapérték 100; a tényleges
+idő függ attól, hány csepp jut a tócsába).
+
+A víz HDRP Lit dielektromos anyagot és képkockánként frissülő planar
+reflection probe-ot használ. Ez külön tükrözési rendereléssel jár.
+A tükrözés nem igényli a projektben kikapcsolt SSR-t. A cseppek becsapódási
+helyéről csillapodó hullámok indulnak; ezek a geometriát és a normálokat
+is módosítják, így a lámpák tükörképét is megtörik. A konténerhez képest
+számolt gravitáció csillapított, finom hullámmozgást okoz dőléskor.
+Ez sekély víz vizuális közelítése, nem teljes folyadékszimuláció.
+
+További ritka cseppek a mennyezet alól indulnak, és az első ütköző felületen
+(doboz, padló vagy karakter) csapódnak be. A fal vízcsíkjai sugárvizsgálattal
+kerülnek a belső falra, puha szélű, vékony fényes felületként. A kisebb
+padlófoltok ugyanazt a tükröző anyagot használják.
+
+A Play módú ellenőrzés a vízfelületek és falcsíkok létrejöttét, valamint
+a tócsa telítődését és a hullámokat kiváltó becsapódásokat is ellenőrzi.
+
+Célzott vízteszt: `SentinelContainerVerification.RunWater` (ugyanazokkal
+a batch kapcsolókkal). A teszt külön ellenőrzi, hogy a planar probe valóban
+létrehozott tükrözési rendertextúrát. A normál kamera képét a
+`Logs/container-gameplay.png` fájlba menti.

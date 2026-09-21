@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using Object = UnityEngine.Object;
 
 [InitializeOnLoad]
@@ -33,6 +34,18 @@ public static class SentinelContainerVerification
     // Run with -batchmode -executeMethod, without -quit or -nographics.
     public static void Run()
     {
+        SessionState.SetBool("Sentinel.WaterOnlyVerification", false);
+        BeginVerification();
+    }
+
+    public static void RunWater()
+    {
+        SessionState.SetBool("Sentinel.WaterOnlyVerification", true);
+        BeginVerification();
+    }
+
+    static void BeginVerification()
+    {
         EditorSceneManager.OpenScene("Assets/_Sentinel/Scenes/Lighting/LightingNew.unity");
         SessionState.SetBool(RunningKey, true);
         EditorApplication.EnterPlaymode();
@@ -49,8 +62,11 @@ public static class SentinelContainerVerification
                 player = Object.FindAnyObjectByType<SentinelContainerPlayer>();
                 Object.FindAnyObjectByType<KontenerMozgas>().SzallitasLeallitasa();
                 player.enabled = false;
-                VerifyMovement(player);
-                SentinelContainerSetup.ValidateCamera();
+                if (!SessionState.GetBool("Sentinel.WaterOnlyVerification", false))
+                {
+                    VerifyMovement(player);
+                    SentinelContainerSetup.ValidateCamera();
+                }
                 // Frame the roof opening for the visual capture.
                 Teleport(player, new Vector3(-5.65f, -1.16f, 0));
                 Step(player, Vector2.zero, 60);
@@ -63,7 +79,15 @@ public static class SentinelContainerVerification
                 Require(rain.GetComponent<MeshFilter>().sharedMesh.vertexCount > 0, "Rain mesh is empty.");
                 var renderer = rain.GetComponent<MeshRenderer>();
                 Require(renderer.sharedMaterial != null && renderer.sharedMaterial.shader.isSupported, "Rain shader unsupported.");
-                CaptureCamera();
+                var water = rain.GetComponent<SentinelContainerWater>();
+                Require(water != null && water.SurfaceCount >= 2, "Reflective puddles were not created.");
+                Require(water.WallStreamCount > 0, "Wall runoff did not find the container wall.");
+                Require(water.WaterImpactCount > 0 && water.Fill > 0, "Rain did not excite or fill the puddle.");
+                CaptureCamera(); // Batch mode needs an explicit render before inspecting the probe.
+                var planar = water.GetComponentInChildren<PlanarReflectionProbe>();
+                Require(planar != null && planar.realtimeTexture != null && planar.realtimeTexture.IsCreated(),
+                    "Planar reflection did not render a texture.");
+                Debug.Log($"WATER_VALIDATION_OK: {water.SurfaceCount} surfaces, {water.WallStreamCount} streams, {water.WaterImpactCount} impacts, fill={water.Fill}");
                 Debug.Log($"RAIN_VALIDATION_OK: {rain.ImpactCount} impacts");
                 captured = true;
                 started = EditorApplication.timeSinceStartup;
@@ -71,7 +95,8 @@ public static class SentinelContainerVerification
             if (captured && EditorApplication.timeSinceStartup - started > 3)
             {
                 Require(File.Exists("Logs/container-gameplay.png"), "Screenshot was not saved.");
-                Debug.Log("CONTAINER_PLAYMODE_VALIDATION_OK");
+                Debug.Log(SessionState.GetBool("Sentinel.WaterOnlyVerification", false)
+                    ? "WATER_PLAYMODE_VALIDATION_OK" : "CONTAINER_PLAYMODE_VALIDATION_OK");
                 Finish(0);
             }
             else if (!captured && EditorApplication.timeSinceStartup - started > 90)
